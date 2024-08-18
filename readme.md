@@ -3,6 +3,12 @@ The GenAI Stack will get you started building your own GenAI application in no t
 The demo applications can serve as inspiration or as a starting point.
 Learn more about the details in the [technical blog post](https://neo4j.com/developer-blog/genai-app-how-to-build/).
 
+# Local Changes (Manoj)
+- Install Olama on host machine (WSL) instead of running inside container
+- Fix WSL DNS problems by updating ```/etc/resolv.conf```
+  - This file gets auto updated everytime. Copy from this local file ```my_resolv.conf```
+- Check my commit for changes I did
+
 # Configure
 
 Create a `.env` file from the environment template file `env.example`
