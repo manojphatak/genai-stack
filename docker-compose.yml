@@ -1,21 +1,21 @@
 services:
 
-  llm: &llm
-    image: ollama/ollama:latest
-    profiles: ["linux"]
-    networks:
-      - net
+  # llm: &llm
+  #   image: ollama/ollama:latest
+  #   profiles: ["linux"]
+  #   networks:
+  #     - net
 
-  llm-gpu:
-    <<: *llm
-    profiles: ["linux-gpu"]
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+  # llm-gpu:
+  #   <<: *llm
+  #   profiles: ["linux-gpu"]
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: all
+  #             capabilities: [gpu]
 
   pull-model:
     image: genai-stack/pull-model:latest
@@ -25,6 +25,7 @@ services:
     environment:
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL-http://host.docker.internal:11434}
       - LLM=${LLM-llama2}
+      # - HOME=/root  # Add this line to set the HOME environment variable
     networks:
       - net
     tty: true

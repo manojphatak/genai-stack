@@ -12,6 +12,9 @@ COPY requirements.txt .
 
 RUN pip install --upgrade -r requirements.txt
 
+# Install NLTK and download wordnet data
+# RUN pip install nltk.downloader
+
 COPY pdf_bot.py .
 COPY utils.py .
 COPY chains.py .
