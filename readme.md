@@ -3,6 +3,13 @@ The GenAI Stack will get you started building your own GenAI application in no t
 The demo applications can serve as inspiration or as a starting point.
 Learn more about the details in the [introduction blog post](https://neo4j.com/blog/introducing-genai-stack-developers/).
 
+## Minimal Setup [Manoj]
+
+- Spin up docker containers using ```docker-compose```
+- Import data from StackOverflow into Neo4J http://localhost:8502/
+- Browse Neo4J http://localhost:7474/ (password: password)
+- Bot http://localhost:8501/
+
 # Configure
 
 Create a `.env` file from the environment template file `env.example`
