@@ -57,6 +57,7 @@ services:
     networks:
       - net
 
+  # Loads stackoverflow data into neo4j
   loader:
     build:
       context: .

@@ -5,9 +5,9 @@ Learn more about the details in the [introduction blog post](https://neo4j.com/b
 
 ## Minimal Setup [Manoj]
 - Spin up docker containers using ```docker-compose```
-- Import data from StackOverflow into Neo4J http://localhost:8502/
+- Import data from StackOverflow into Neo4J http://localhost:8502/ ```service: loader```
 - Browse Neo4J http://localhost:7474/ (password: password)
-- Bot http://localhost:8501/
+- Bot http://localhost:8501/ ```service: bot```
 
 ## Neo4J Queries
 - [Working with Neo4J Cypher](./docs/working_with_neo4j.md)
