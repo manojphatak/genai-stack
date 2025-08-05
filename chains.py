@@ -52,11 +52,28 @@ def load_embedding_model(embedding_model_name: str, logger=BaseLogger(), config=
         dimension = 768
         logger.info("Embedding: Using Google Generative AI Embeddings")
     else:
-        embeddings = HuggingFaceEmbeddings(
-            model_name="all-MiniLM-L6-v2", cache_folder="/embedding_model"
-        )
+        # Set SSL verification to False to bypass certificate issues
+        import ssl
+        import urllib3
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        
+        # Try to use local model first, fallback to online download
+        local_model_path = "/embedding_model/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf"
+        import os
+        if os.path.exists(local_model_path):
+            embeddings = HuggingFaceEmbeddings(
+                model_name=local_model_path, cache_folder="/embedding_model"
+            )
+            logger.info("Embedding: Using local SentenceTransformer")
+        else:
+            # Disable SSL verification for downloads
+            os.environ["CURL_CA_BUNDLE"] = ""
+            os.environ["REQUESTS_CA_BUNDLE"] = ""
+            embeddings = HuggingFaceEmbeddings(
+                model_name="all-MiniLM-L6-v2", cache_folder="/embedding_model"
+            )
+            logger.info("Embedding: Using online SentenceTransformer")
         dimension = 384
-        logger.info("Embedding: Using SentenceTransformer")
     return embeddings, dimension
 
 
