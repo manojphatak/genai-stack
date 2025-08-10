@@ -11,6 +11,9 @@ Learn more about the details in the [introduction blog post](https://neo4j.com/b
 - Browse Neo4J http://localhost:7474/ (password: password)
 - Bot http://localhost:8501/ ```service: bot```
 
+## Debugging
+- [Run with health check optional, and attach debugger in vscode](./docs/DEBUG_SETUP.md)
+
 ## Neo4J Queries
 - [Working with Neo4J Cypher](./docs/working_with_neo4j.md)
 
