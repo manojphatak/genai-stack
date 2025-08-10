@@ -6,13 +6,23 @@ Learn more about the details in the [introduction blog post](https://neo4j.com/b
 > This is my own version of ```minimal setup```. For complete README version, pl refer [readme.full.md](./readme.full.md)
 
 ## Setup
-- Spin up docker containers using ```docker-compose```
+- Spin up docker containers using ```docker-compose up -d api```
+- Check logs ```docker-compose logs api --follow``` 
 - Import data from StackOverflow into Neo4J http://localhost:8502/ ```service: loader```
 - Browse Neo4J http://localhost:7474/ (password: password)
 - Bot http://localhost:8501/ ```service: bot```
 
 ## Debugging
-- [Run with health check optional, and attach debugger in vscode](./docs/DEBUG_SETUP.md)
+- If you want to attach debugger & step through the code:
+```
+docker-compose -f docker-compose.yml -f docker-compose.debug.yml up api
+```
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.debug.yml down
+```
+
+- [More elaborate setup with option to disable healthcheck](./docs/DEBUG_SETUP.md)
 
 ## Neo4J Queries
 - [Working with Neo4J Cypher](./docs/working_with_neo4j.md)
