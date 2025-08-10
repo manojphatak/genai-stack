@@ -1,0 +1,4 @@
+services:
+  api:
+    healthcheck:
+      disable: true  # Disable health check to avoid request spam

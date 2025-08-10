@@ -207,6 +207,7 @@ services:
       - REQUESTS_CA_BUNDLE=""
       - SSL_VERIFY=false
       - DEBUG_MODE=true  # Enable debugging
+      - DEBUG_WAIT=false  # Don't wait for debugger by default
     networks:
       - net
     depends_on:

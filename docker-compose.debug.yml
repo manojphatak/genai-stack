@@ -1,0 +1,6 @@
+services:
+  api:
+    environment:
+      - DEBUG_WAIT=true  # Wait for debugger to attach
+    healthcheck:
+      disable: true  # Disable health check during debugging

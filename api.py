@@ -4,9 +4,15 @@ import os
 if os.getenv("DEBUG_MODE", "false").lower() == "true":
     import debugpy
     debugpy.listen(("0.0.0.0", 5678))
-    print("🐛 Waiting for debugger to attach...")
-    debugpy.wait_for_client()
-    print("🐛 Debugger attached!")
+    print("🐛 Debugger listening on port 5678...")
+    
+    # Only wait for debugger if explicitly requested
+    if os.getenv("DEBUG_WAIT", "false").lower() == "true":
+        print("🐛 Waiting for debugger to attach...")
+        debugpy.wait_for_client()
+        print("🐛 Debugger attached!")
+    else:
+        print("🐛 Debugger available - attach when needed")
 
 from langchain_neo4j import Neo4jGraph
 from dotenv import load_dotenv
