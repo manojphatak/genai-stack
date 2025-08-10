@@ -6,8 +6,15 @@ Learn more about the details in the [introduction blog post](https://neo4j.com/b
 > This is my own version of ```minimal setup```. For complete README version, pl refer [readme.full.md](./readme.full.md)
 
 ## Setup
-- Spin up docker containers using ```docker-compose up -d api```
-- Check logs ```docker-compose logs api --follow``` 
+- Spin up docker containers using 
+```
+docker-compose up -d api
+```
+
+- Check logs 
+```
+docker-compose logs api --follow
+``` 
 - Import data from StackOverflow into Neo4J http://localhost:8502/ ```service: loader```
 - Browse Neo4J http://localhost:7474/ (password: password)
 - Bot http://localhost:8501/ ```service: bot```
@@ -17,6 +24,7 @@ Learn more about the details in the [introduction blog post](https://neo4j.com/b
 ```
 docker-compose -f docker-compose.yml -f docker-compose.debug.yml up api
 ```
+> Then attach debugger by ```F5```
 
 ```
 docker-compose -f docker-compose.yml -f docker-compose.debug.yml down
