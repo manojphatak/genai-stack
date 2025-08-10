@@ -19,3 +19,4 @@ langchain-ollama==0.2.3
 langchain-huggingface==0.1.2
 langchain-aws==0.2.15
 langchain-neo4j==0.4.0
+debugpy

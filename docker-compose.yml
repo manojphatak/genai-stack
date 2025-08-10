@@ -186,6 +186,7 @@ services:
       dockerfile: api.Dockerfile
     volumes:
       - ./embedding_model:/embedding_model
+      - .:/app  # Mount source code for live debugging
     environment:
       - NEO4J_URI=${NEO4J_URI-neo4j://database:7687}
       - NEO4J_PASSWORD=${NEO4J_PASSWORD-password}
@@ -205,6 +206,7 @@ services:
       - CURL_CA_BUNDLE=""
       - REQUESTS_CA_BUNDLE=""
       - SSL_VERIFY=false
+      - DEBUG_MODE=true  # Enable debugging
     networks:
       - net
     depends_on:
@@ -223,6 +225,7 @@ services:
             - front-end/
     ports:
       - 8504:8504
+      - 5678:5678  # Add debug port
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 http://localhost:8504/ || exit 1"]
       interval: 5s

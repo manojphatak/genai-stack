@@ -1,5 +1,13 @@
 import os
 
+# Remote debugging setup
+if os.getenv("DEBUG_MODE", "false").lower() == "true":
+    import debugpy
+    debugpy.listen(("0.0.0.0", 5678))
+    print("🐛 Waiting for debugger to attach...")
+    debugpy.wait_for_client()
+    print("🐛 Debugger attached!")
+
 from langchain_neo4j import Neo4jGraph
 from dotenv import load_dotenv
 from utils import (
@@ -140,10 +148,19 @@ def qstream(question: Question = Depends()):
 
 @app.get("/query")
 async def ask(question: Question = Depends()):
+    print(f"🔍 DEBUG: Received question: {question.text}")
+    print(f"🔍 DEBUG: RAG mode: {question.rag}")
+    
     output_function = llm_chain
     if question.rag:
+        print("🔍 DEBUG: Using RAG chain")
         output_function = rag_chain
+    else:
+        print("🔍 DEBUG: Using LLM-only chain")
+    
+    print("🔍 DEBUG: About to invoke chain...")
     result = output_function.invoke(question.text)
+    print(f"🔍 DEBUG: Chain result: {result}")
 
     return {"result": result, "model": llm_name}
 
@@ -156,3 +173,8 @@ async def generate_ticket_api(question: BaseTicket = Depends()):
         input_question=question.text,
     )
     return {"result": {"title": new_title, "text": new_question}, "model": llm_name}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8504)
